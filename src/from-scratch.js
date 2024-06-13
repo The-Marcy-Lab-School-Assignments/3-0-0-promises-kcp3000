@@ -1,16 +1,51 @@
-const resolvedWrapper = () => {
+const resolvedWrapper = (any) => {
+  const promise = new Promise((resolve, reject) => {
+    resolve(any)
+  })
+  return promise
 };
 
-const rejectedWrapper = () => {
+//console.log(resolvedWrapper('jellpo'))
+
+const rejectedWrapper = (any) => {
+  const promise = new Promise((resolve, reject) => {
+    reject(new Error(any))
+  })
+  return promise
 };
 
-const handleResolvedPromise = () => {
+//console.log(rejectedWrapper('Uh oh!'))
+
+
+const handleResolvedPromise = (promise) => {
+  return promise.then((val) => {
+    console.log(val)
+    return val
+  })
 };
 
-const handleResolvedOrRejectedPromise = () => {
+// console.log(handleResolvedPromise('hi'))
+
+
+const handleResolvedOrRejectedPromise = (promise) => {
+  return promise.then((val) => {
+    console.log(val)
+    return val
+  })
+    .catch((reject) => {
+      console.error('Your error message was: ' + reject.message)
+      return null
+    })
 };
 
-const pauseForMs = () => {
+
+const pauseForMs = (num) => {
+  const promise = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve();
+    }, num)
+  })
+  return promise
 };
 
 module.exports = {
